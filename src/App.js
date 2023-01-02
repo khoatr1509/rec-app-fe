@@ -8,6 +8,7 @@ import AddStockPage from "./pages/AddStockPage";
 import HomePage from "./pages/HomePage";
 import MainScreen from "./pages/MainScreen";
 import { StockScreen } from "./pages/StockScreen";
+import FinanceScreen from "./pages/FinanceScreen";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route exact path="/stock">
           <StockScreen />
+        </Route>
+        <Route exact path="/finance">
+          <FinanceScreen />
         </Route>
         <Route exact path="/home">
           <MainScreen />
