@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import MainScreen from "./pages/MainScreen";
 import { StockScreen } from "./pages/StockScreen";
 import FinanceScreen from "./pages/FinanceScreen";
+import CarScreen from "./pages/CarScreen";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/stock">
           <StockScreen />
+        </Route>
+        <Route exact path="/car">
+          <CarScreen />
         </Route>
         <Route exact path="/finance">
           <FinanceScreen />
