@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import AddStockPage from "./pages/AddStockPage";
+import AddVehiclePage from "./pages/AddVehiclePage";
 import HomePage from "./pages/HomePage";
 import MainScreen from "./pages/MainScreen";
 import { StockScreen } from "./pages/StockScreen";
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route exact path="/home">
           <MainScreen />
+        </Route>
+        <Route exact path="/vehicle/add">
+          <AddVehiclePage />
         </Route>
       </Switch>
     </Router>
