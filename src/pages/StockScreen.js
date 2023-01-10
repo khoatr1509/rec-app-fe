@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {getFirestore, collection, getDocs} from "firebase/firestore"; 
+import app from '../firebase';
+
+const db = getFirestore(app);
 
 const DisplayText = (props) => {
     return (
@@ -19,15 +23,19 @@ const DisplayText = (props) => {
 export {DisplayText};
 
 export const StockScreen = () => {
-    // useEffect(() => {
-    //     getDocs(collection(db, "vehicle"))
-    //         .then(async (res) => {
-    //             res.forEach((e) => {
-    //                 console.log(e);
-    //             })
-    //         });
-    // }, [])
-
+    const [stockList, setStockList] = useState([]);
+        const fetchStock = async () => {
+                await getDocs(collection(db, "stock"))
+                .then((e)=>{       
+                        console.log(e);        
+                        const newData = e.docs
+                                .map((doc) => ({...doc.data(), id:doc.id }));
+                                setStockList(newData);                
+                })
+        }
+        useEffect(()=>{
+            fetchStock();
+        }, [])
     const logo = 'black_logo.png';
     return (
         <div className="h-screen bg-[#000000] flex flex-col">
@@ -46,22 +54,22 @@ export const StockScreen = () => {
                 </div>
             </div>
             <div className="mt-[32px] bg-[#1C1C1E] w-[350px] h-[170px] border-style mx-auto py-[32px] flex flex-col items-center justify-center">
-                <DisplayText text="ALUMINUM" subtext="CAN" amount="12"/>
+                <DisplayText text="ALUMINUM" subtext="CAN" amount={stockList[0]?.amount}/>
             </div>
             <div className="bg-[#1C1C1E] w-[350px] h-[170px] border-none mx-auto rounded-[12px] border-[2px] flex mt-[12px]">
                 <div className=" stock-card-l">
-                    <DisplayText  text="CARDBOARD" subtext="CAN" amount="12"/> 
+                    <DisplayText  text="CARDBOARD" subtext="CAN" amount={stockList[1]?.amount}/> 
                 </div>
                 <div className=" stock-card-r">
-                    <DisplayText  text="CARDBOARD" subtext="RETURN" amount="48"/>
+                    <DisplayText  text="CARDBOARD" subtext="RETURN" amount={stockList[2]?.amount}/>
                 </div>
             </div>
             <div className="bg-[#1C1C1E] w-[350px] h-[170px] border-none mx-auto rounded-[12px] border-[2px] flex mt-[12px]">
                 <div className=" stock-card-l">
-                    <DisplayText  text="PAPER" subtext="BOOK" amount="5"/> 
+                    <DisplayText  text="PAPER" subtext="BOOK" amount={stockList[3]?.amount}/> 
                 </div>
                 <div className=" stock-card-r">
-                    <DisplayText  text="PAPER" subtext="OFFICE" amount="7"/>
+                    <DisplayText  text="PAPER" subtext="OFFICE" amount={stockList[4]?.amount}/>
                 </div>
             </div>
         </div>
