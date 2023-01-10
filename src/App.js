@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/stock">
           <StockScreen />
         </Route>
-        <Route exact path="/car">
+        <Route exact path="/vehicle">
           <CarScreen />
         </Route>
         <Route exact path="/finance">

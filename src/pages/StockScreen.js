@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DisplayText = (props) => {
@@ -20,6 +19,15 @@ const DisplayText = (props) => {
 export {DisplayText};
 
 export const StockScreen = () => {
+    // useEffect(() => {
+    //     getDocs(collection(db, "vehicle"))
+    //         .then(async (res) => {
+    //             res.forEach((e) => {
+    //                 console.log(e);
+    //             })
+    //         });
+    // }, [])
+
     const logo = 'black_logo.png';
     return (
         <div className="h-screen bg-[#000000] flex flex-col">
